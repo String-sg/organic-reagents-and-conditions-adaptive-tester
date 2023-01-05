@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!--
+      This is the page head - it contains info the browser uses to display the page
+      You won't see what's in the head in the page
+      Scroll down to the body element for the page content
+    -->
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- 
+      This is an HTML comment
+      You can write text in a comment and the content won't be visible in the page
+    -->
+
+    <title>Organic Chemistry MCQ</title>
+
+    <!-- Import bootstrap's stylesheet and javascript file -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <!-- Import the webpage's stylesheet -->
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- Import the webpage's javascript file -->
+    <script src="javascript.js" defer></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="my-4">
+        <h1 class="text-center"><strong>Organic Chemistry MCQ</strong></h1>
+      </div>
+
+      <div id="instructions" class="container border border-dark border-3 py-2">
+        <h4 class="my-2 text-center"><strong>Instructions</strong></h4>
+
+        <ul>
+          <li>
+            Click on "Reset Progress Tracker" to start a personalised
+            adaptive test (the data will only be stored in your browser)
+          </li>
+          <li>
+            Please do not use incognito mode for this quiz.
+          </li>
+          <li>
+            After you submit your answer, questions with correct attempts will
+            be in green. Incorrect attempts will be in red.
+          </li>
+          <li>
+            You can retry the questions and submit again without creating a new
+            quiz.
+          </li>
+          <li>
+            For a fresh set of questions, you can click on the "Create Quiz"
+            button again.
+          </li>
+        </ul>
+      </div>
+
+      <div id="administrativeTools" class="d-flex container my-4">
+        <div class="col text-center">
+          <!-- Button to reset progress or start progress tracker modal -->
+
+          <button
+            type="button"
+            class="btn btn-warning mx-2 my-2"
+            onclick="progressTracker()"
+          >
+            Reset Progress Tracker
+          </button>
+
+          <!-- Button to get the progress of student -->
+
+          <button
+            type="button"
+            class="btn btn-primary mx-2 my-2"
+            id="mastery"
+            onclick="getProgress()"
+          >
+            Get Progress
+          </button>
+        </div>
+      </div>
+
+      <div
+        id="progress_display"
+        class="col text-center border border-secondary border-3"
+        style="display: none"
+      ></div>
+
+      <div id="quizCreationContainer" class="container">
+        <div class="row">
+          <div class="col my-4">
+            <h3>Chapter Choices</h3>
+
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                id="All"
+              />
+              <label class="form-check-label" for="All">All</label>
+            </div>
+
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                id="Alkanes"
+              />
+              <label class="form-check-label" for="Alkanes">Alkanes</label>
+            </div>
+
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                id="Alkenes"
+              />
+              <label class="form-check-label" for="Alkenes">Alkenes</label>
+            </div>
+
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                id="Arenes"
+              />
+              <label class="form-check-label" for="Arenes">Arenes</label>
+            </div>
+
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                id="Halogen Derivatives"
+              />
+              <label class="form-check-label" for="Halogen Derivatives"
+                >Halogen Derivatives</label
+              >
+            </div>
+
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                id="Hydroxy Compounds"
+              />
+              <label class="form-check-label" for="Hydroxy Compounds"
+                >Hydroxy Compounds</label
+              >
+            </div>
+
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                id="Carbonyl Compounds"
+              />
+              <label class="form-check-label" for="Carbonyl Compounds"
+                >Carbonyl Compounds</label
+              >
+            </div>
+
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                id="Carboxylic Acids and Derivatives"
+              />
+              <label
+                class="form-check-label"
+                for="Carboxylic Acids and Derivatives"
+                >Carboxylic Acids and Derivatives</label
+              >
+            </div>
+
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                id="Nitrogen Compounds"
+              />
+              <label class="form-check-label" for="Nitrogen Compounds"
+                >Nitrogen Compounds</label
+              >
+            </div>
+
+            <!-- Button to clear checkboxes -->
+            <div class="my-3">
+              <button
+                type="button"
+                class="btn btn-danger"
+                id="clearCheckboxes"
+                onclick="clearAllCheckboxes()"
+              >
+                Clear Checkboxes
+              </button>
+            </div>
+          </div>
+
+          <div class="col my-4">
+            <div id="number_of_questions" class="container">
+              <h3>Number of Questions</h3>
+              <input
+                type="number"
+                id="numberOfQuestions"
+                name="Number of Questions:"
+                min="1"
+                max="50"
+              />
+
+              <!-- Button to create quiz -->
+              <div class="my-2">
+                <button type="button" class="btn btn-primary" id="createQuiz">
+                  Create Quiz
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div
+          id="quiz"
+          class="container border border-secondary border-3 py-2"
+          style="display: none"
+        ></div>
+      </div>
+
+      <div class="button-container-div">
+        <button
+          type="button"
+          class="btn btn-success my-3"
+          id="submit"
+          style="display: none"
+        >
+          Submit Quiz
+        </button>
+      </div>
+
+      <div class="button-container-div">
+        <div id="results" style="display: none"></div>
+      </div>
+      
+      <div class="container text-muted">
+        <p>
+          Created by Chan Kuang Wen
+        </p>
+      </div>
+      
+    </div>
+  </body>
+</html>
